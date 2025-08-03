@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7d4dbaa797c26c74ba0e6c0cc0e28238
+guid: 43a0461da802a744eb28c2a84a9672fe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7316229441688303391
-    second: Tower_0
+      213: -7554067398021572401
+    second: WTFarrow_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 64
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tower_0
+      name: WTFarrow_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 14
-        width: 232
-        height: 295
+        x: 151
+        y: 185
+        width: 224
+        height: 49
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f17f5170ae7788560800000000000000
-      internalID: 7316229441688303391
+      spriteID: fc8909389bf8a2790800000000000000
+      internalID: -7554067398021572401
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Tower_0: 7316229441688303391
+      WTFarrow_0: -7554067398021572401
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

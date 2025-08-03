@@ -1,10 +1,25 @@
 fileFormatVersion: 2
-guid: 8855caf5626948e4cb8514520d4e2c09
+guid: f0cb6f8a672ba33468132703cd0fe219
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1347532211411968617
-    second: Grass_0
+      213: 79288766690774130
+    second: TowerSpriteXXL_0
+  - first:
+      213: -5827607225721803895
+    second: TowerSpriteXXL_1
+  - first:
+      213: -5558440592791249966
+    second: TowerSpriteXXL_2
+  - first:
+      213: 1668593356578494723
+    second: TowerSpriteXXL_3
+  - first:
+      213: 8432320549942614368
+    second: TowerSpriteXXL_4
+  - first:
+      213: -72850423164841300
+    second: TowerSpriteXXL_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,133 +115,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Grass_0
+      name: TowerSpriteXXL_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 121
-        width: 64
-        height: 64
+        x: 35
+        y: 292
+        width: 284
+        height: 340
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 79d946fd79a9c4de0800000000000000
-      internalID: -1347532211411968617
+      spriteID: 27c484596b0b91100800000000000000
+      internalID: 79288766690774130
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Grass_1
+      name: TowerSpriteXXL_0
       rect:
         serializedVersion: 2
-        x: 68
-        y: 121
-        width: 64
-        height: 64
+        x: 41
+        y: 628
+        width: 287
+        height: 339
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: d343464722584b447b24267996c5d070
-      internalID: 402966977
+      spriteID: 98b2a5caa1e202fa0800000000000000
+      internalID: -5827607225721803895
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Grass_2
+      name: TowerSpriteXXL_2
       rect:
         serializedVersion: 2
-        x: 134
-        y: 121
-        width: 64
-        height: 64
+        x: 373
+        y: 296
+        width: 280
+        height: 333
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 73d2a2332d84f4749aa35d5fc8740c69
-      internalID: -1128993424
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Grass_3
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 2
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 83ee4dad09aef464ca5a5bd401e49803
-      internalID: 1698689060
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Grass_4
-      rect:
-        serializedVersion: 2
-        x: 88
-        y: 56
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9031ae82ac51e9045ba8f1c7c405ef6e
-      internalID: 1363836162
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Grass_5
-      rect:
-        serializedVersion: 2
-        x: 143
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b19248a3281efaa4abd72456c63456b7
-      internalID: 464228939
+      spriteID: 2dbd0911bb37cd2b0800000000000000
+      internalID: -5558440592791249966
       vertices: []
       indices: 
       edges: []
@@ -235,7 +184,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c6560f97d32cb284ba11f3f54efb1781
+    spriteID: bbe83a146efa44e45a5d6c015dad7c54
     internalID: 0
     vertices: []
     indices: 
@@ -243,16 +192,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      Grass_0: -1347532211411968617
-      Grass_1: 402966977
-      Grass_2: -1128993424
-      Grass_3: 1698689060
-      Grass_4: 1363836162
-      Grass_5: 464228939
+      TowerSpriteXXL_0: -5827607225721803895
+      TowerSpriteXXL_1: 79288766690774130
+      TowerSpriteXXL_2: -5558440592791249966
+      TowerSpriteXXL_3: 1668593356578494723
+      TowerSpriteXXL_4: 8432320549942614368
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
