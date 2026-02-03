@@ -6,10 +6,14 @@ public class Tower : MonoBehaviour
     public float range = 5f;
     public float fireRate = 1f;
     public Transform firePoint;
+    private Transform currentTarget;
 
     private float fireCountdown = 0f;
 
     private Animator animator;
+
+    private bool canShoot = false;
+
 
     void Start()
     {
@@ -29,14 +33,10 @@ public class Tower : MonoBehaviour
                 Fire(target.transform);
                 fireCountdown = 1f / fireRate;
             }
-        }
-        else
+        }else
         {
-            if (animator != null)
-            {
-                animator.ResetTrigger("Shoot");
-                animator.Play("Idle");
-            }
+            canShoot = false;
+            currentTarget = null;
         }
     }
 
@@ -65,21 +65,31 @@ public class Tower : MonoBehaviour
 
     void Fire(Transform target)
     {
-        if (arrowPrefab != null && firePoint != null)
-        {
-            GameObject arrowGO = Instantiate(arrowPrefab, firePoint.position, Quaternion.identity);
-            Arrow arrow = arrowGO.GetComponent<Arrow>();
-
-            if (arrow != null)
-            {
-                Vector3 dir = target.position - firePoint.position;
-                arrow.SetDirection(dir);
-            }
-        }
+        currentTarget = target;
 
         if (animator != null)
         {
             animator.SetTrigger("Shoot");
         }
     }
+
+    public void ShootArrow()
+    {
+        if (currentTarget == null) return;
+
+        GameObject arrowGO = Instantiate(
+            arrowPrefab,
+            firePoint.position,
+            Quaternion.identity
+        );
+
+        Arrow arrow = arrowGO.GetComponent<Arrow>();
+        if (arrow != null)
+        {
+            Vector3 dir = currentTarget.position - firePoint.position;
+            arrow.SetDirection(dir);
+        }
+    }
+
+
 }
