@@ -28,7 +28,16 @@ public class Arrow : MonoBehaviour
             Vector2 hitDirection = (other.transform.position - transform.position).normalized;
             health.TakeDamage(damage, damageType, hitDirection, knockbackForce);
 
-            Destroy(gameObject);
+            StatusEffectHandler status = other.GetComponent<StatusEffectHandler>();
+
+            if (status != null)
+            {
+                if (damageType == DamageType.Fire)
+                    status.ApplyBurn(3f, 1, 0.5f);
+
+                if (damageType == DamageType.Ice)
+                    status.ApplyFreeze(2f, 0.4f);
+            }
         }
     }
 }

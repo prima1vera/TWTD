@@ -24,13 +24,22 @@ public class UnitHealth : MonoBehaviour
 
         currentHealth -= dmg;
 
-        GetComponent<UnitEffects>().PlayHitEffect(type);
         GetComponent<UnitMovement>().ApplyKnockback(hitDirection, knockbackForce);
 
         if (currentHealth <= 0)
         {
             Die();
         }
+    }
+
+    public void TakePureDamage(int dmg)
+    {
+        if (CurrentState == UnitState.Dead) return;
+
+        currentHealth -= dmg;
+
+        if (currentHealth <= 0)
+            Die();
     }
 
 

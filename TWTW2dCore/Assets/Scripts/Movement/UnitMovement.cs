@@ -10,11 +10,18 @@ public class UnitMovement : MonoBehaviour
     private Animator animator;
     private Vector2 knockbackVelocity;
     private float knockbackTimer;
+    private float speedMultiplier = 1f;
+
 
     public void ApplyKnockback(Vector2 direction, float force)
     {
         knockbackVelocity = direction * force;
         knockbackTimer = 0.1f;
+    }
+
+    public void SetSpeedMultiplier(float value)
+    {
+        speedMultiplier = value;
     }
 
     void Start()
@@ -47,7 +54,7 @@ public class UnitMovement : MonoBehaviour
         Transform target = path[waypointIndex];
         Vector3 dir = target.position - transform.position;
 
-        Vector3 movement = dir.normalized * speed * Time.deltaTime;
+        Vector3 movement = dir.normalized * speed * speedMultiplier * Time.deltaTime;
         transform.Translate(movement, Space.World);
 
         //UPDATE PARAMS FOR BLEND TREE
