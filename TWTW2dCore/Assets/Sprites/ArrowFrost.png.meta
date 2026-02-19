@@ -79,7 +79,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 60, y: 176, z: 66, w: 140}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -127,7 +127,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FrostArrow_0
+      name: ArrowFrost_0
       rect:
         serializedVersion: 2
         x: 59
@@ -153,7 +153,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 424159b2d3462754581c45ac1e1c5a46
-    internalID: 0
+    internalID: 1754323569
     vertices: []
     indices: 
     edges: []
@@ -162,7 +162,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      FrostArrow_0: -91627661426143493
+      ArrowFrost_0: -91627661426143493
       FrostArrow_1: -3524322902855008437
       FrostArrow_2: -7908271620140676262
       FrostArrow_3: 3501392821321792530
