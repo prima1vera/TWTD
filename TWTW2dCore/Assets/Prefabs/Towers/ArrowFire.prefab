@@ -180,3 +180,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Arrow
   speed: 5
   damage: 1
+  damageType: 1
+  knockbackForce: 0.2

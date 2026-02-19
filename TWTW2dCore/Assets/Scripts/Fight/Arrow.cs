@@ -5,6 +5,8 @@ public class Arrow : MonoBehaviour
     public float speed = 10f;
     public int damage = 1;
     private Vector3 direction;
+    public DamageType damageType = DamageType.Normal;
+    public float knockbackForce = 0.2f;
 
     public void SetDirection(Vector3 dir)
     {
@@ -18,15 +20,13 @@ public class Arrow : MonoBehaviour
         transform.Translate(direction * speed * Time.deltaTime, Space.World);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        UnitHealth health = other.GetComponent<UnitHealth>();
+        if (health != null)
         {
-            UnitHealth enemy = other.GetComponent<UnitHealth>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(damage);
-            }
+            Vector2 hitDirection = (other.transform.position - transform.position).normalized;
+            health.TakeDamage(damage, damageType, hitDirection, knockbackForce);
 
             Destroy(gameObject);
         }

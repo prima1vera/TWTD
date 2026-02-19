@@ -8,6 +8,14 @@ public class UnitMovement : MonoBehaviour
     private UnitHealth unitHealth;
     private Transform[] path;
     private Animator animator;
+    private Vector2 knockbackVelocity;
+    private float knockbackTimer;
+
+    public void ApplyKnockback(Vector2 direction, float force)
+    {
+        knockbackVelocity = direction * force;
+        knockbackTimer = 0.1f;
+    }
 
     void Start()
     {
@@ -27,6 +35,14 @@ public class UnitMovement : MonoBehaviour
 
         if (unitHealth.CurrentState != UnitState.Moving)
             return;
+
+        if (knockbackTimer > 0)
+        {
+            transform.Translate(knockbackVelocity * Time.deltaTime, Space.World);
+            knockbackTimer -= Time.deltaTime;
+            return;
+        }
+
 
         Transform target = path[waypointIndex];
         Vector3 dir = target.position - transform.position;

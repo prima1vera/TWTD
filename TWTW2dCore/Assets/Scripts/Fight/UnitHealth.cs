@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class UnitHealth : MonoBehaviour
@@ -17,17 +18,21 @@ public class UnitHealth : MonoBehaviour
         col = GetComponent<Collider2D>();
     }
 
-    public void TakeDamage(int dmg)
+    public void TakeDamage(int dmg, DamageType type, Vector2 hitDirection, float knockbackForce)
     {
         if (CurrentState == UnitState.Dead) return;
 
         currentHealth -= dmg;
+
+        GetComponent<UnitEffects>().PlayHitEffect(type);
+        GetComponent<UnitMovement>().ApplyKnockback(hitDirection, knockbackForce);
 
         if (currentHealth <= 0)
         {
             Die();
         }
     }
+
 
     void Die()
     {
