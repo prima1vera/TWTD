@@ -25,7 +25,6 @@ public class Tower : MonoBehaviour
 
         if (target == null)
         {
-            Debug.Log("NO TARGET");
             currentTarget = null;
             return;
         }
@@ -34,8 +33,6 @@ public class Tower : MonoBehaviour
 
         if (fireCountdown <= 0f)
         {
-            Debug.Log("SHOOT");
-            animator.ResetTrigger("Shoot"); // важно
             animator.SetTrigger("Shoot");
             fireCountdown = 1f / fireRate;
         }
@@ -50,7 +47,7 @@ public class Tower : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             UnitHealth health = enemy.GetComponent<UnitHealth>();
-            if (health != null && !health.IsDead)
+            if (health != null && health.CurrentState != UnitState.Dead)
             {
                 float dist = Vector3.Distance(transform.position, enemy.transform.position);
                 if (dist < shortest && dist <= range)
