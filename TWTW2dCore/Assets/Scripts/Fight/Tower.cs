@@ -6,14 +6,10 @@ public class Tower : MonoBehaviour
     public float range = 5f;
     public float fireRate = 1f;
     public Transform firePoint;
+
     private Transform currentTarget;
-
     private float fireCountdown = 0f;
-
     private Animator animator;
-
-    private bool canShoot = false;
-
 
     void Start()
     {
@@ -24,30 +20,31 @@ public class Tower : MonoBehaviour
     {
         fireCountdown -= Time.deltaTime;
 
-        GameObject target = FindTarget();
+        Transform target = FindTarget();
 
-        if (target != null)
-        {
-            canShoot = true;
 
-            if (fireCountdown <= 0f)
-            {
-                Fire(target.transform);
-                fireCountdown = 1f / fireRate;
-            }
-        }
-        else
+        if (target == null)
         {
-            canShoot = false;
+            Debug.Log("NO TARGET");
             currentTarget = null;
+            return;
+        }
+
+        currentTarget = target;
+
+        if (fireCountdown <= 0f)
+        {
+            Debug.Log("SHOOT");
+            animator.ResetTrigger("Shoot"); // важно
+            animator.SetTrigger("Shoot");
+            fireCountdown = 1f / fireRate;
         }
     }
 
-
-    GameObject FindTarget()
+    Transform FindTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        GameObject nearest = null;
+        Transform nearest = null;
         float shortest = Mathf.Infinity;
 
         foreach (GameObject enemy in enemies)
@@ -59,7 +56,7 @@ public class Tower : MonoBehaviour
                 if (dist < shortest && dist <= range)
                 {
                     shortest = dist;
-                    nearest = enemy;
+                    nearest = enemy.transform;
                 }
             }
         }
@@ -67,20 +64,10 @@ public class Tower : MonoBehaviour
         return nearest;
     }
 
-    void Fire(Transform target)
-    {
-        currentTarget = target;
-
-        if (animator != null)
-        {
-            animator.SetTrigger("Shoot");
-        }
-    }
-
     public void ShootArrow()
     {
-        if (!canShoot) return;
-        if (currentTarget == null) return;
+        if (currentTarget == null)
+            return;
 
         GameObject arrowGO = Instantiate(
             arrowPrefab,
@@ -95,7 +82,4 @@ public class Tower : MonoBehaviour
             arrow.SetDirection(dir);
         }
     }
-
-
-
 }
