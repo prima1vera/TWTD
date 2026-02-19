@@ -28,17 +28,21 @@ public class Tower : MonoBehaviour
 
         if (target != null)
         {
+            canShoot = true;
+
             if (fireCountdown <= 0f)
             {
                 Fire(target.transform);
                 fireCountdown = 1f / fireRate;
             }
-        }else
+        }
+        else
         {
             canShoot = false;
             currentTarget = null;
         }
     }
+
 
     GameObject FindTarget()
     {
@@ -75,6 +79,7 @@ public class Tower : MonoBehaviour
 
     public void ShootArrow()
     {
+        if (!canShoot) return;
         if (currentTarget == null) return;
 
         GameObject arrowGO = Instantiate(
@@ -90,6 +95,7 @@ public class Tower : MonoBehaviour
             arrow.SetDirection(dir);
         }
     }
+
 
 
 }
