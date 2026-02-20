@@ -47,6 +47,12 @@ public class UnitHealth : MonoBehaviour
     {
         CurrentState = UnitState.Dead;
 
+        StatusEffectHandler status = GetComponent<StatusEffectHandler>();
+        if (status != null)
+        {
+            status.StopAllEffects();
+        }
+
         if (animator != null)
             animator.SetBool("isDead", true);
 

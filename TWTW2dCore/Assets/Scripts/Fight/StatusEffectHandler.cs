@@ -18,6 +18,20 @@ public class StatusEffectHandler : MonoBehaviour
         visuals = GetComponent<UnitEffects>();
     }
 
+    public void StopAllEffects()
+    {
+        if (burnRoutine != null)
+            StopCoroutine(burnRoutine);
+
+        if (freezeRoutine != null)
+            StopCoroutine(freezeRoutine);
+
+        visuals?.SetFireVisual(false);
+        visuals?.SetFreezeVisual(false);
+
+        movement.SetSpeedMultiplier(1f);
+    }
+
     // FIRE
     public void ApplyBurn(float duration, int tickDamage, float tickRate)
     {

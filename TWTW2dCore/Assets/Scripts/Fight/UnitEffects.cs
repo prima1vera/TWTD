@@ -12,7 +12,14 @@ public class UnitEffects : MonoBehaviour
     void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+
+        if (fireEffect != null)
+            fireEffect.SetActive(false);
+
+        if (frostEffectPrefab != null)
+            frostEffectPrefab.SetActive(false);
     }
+
 
     public void SetFireVisual(bool state)
     {
@@ -23,10 +30,10 @@ public class UnitEffects : MonoBehaviour
     public void SetFreezeVisual(bool state)
     {
         if (frostEffectPrefab != null)
-        {
             frostEffectPrefab.SetActive(state);
-            sr.color = Color.cyan;
-        }
+
+        if (sr != null)
+            sr.color = state ? Color.cyan : Color.white;
     }
 
 }
