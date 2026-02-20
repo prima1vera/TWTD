@@ -7,12 +7,34 @@ public class Arrow : MonoBehaviour
     private Vector3 direction;
     public DamageType damageType = DamageType.Normal;
     public float knockbackForce = 0.2f;
+    public TrailRenderer trail;
 
     public void SetDirection(Vector3 dir)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
+    void Start()
+    {
+        if (trail != null)
+        {
+            switch (damageType)
+            {
+                case DamageType.Fire:
+                    trail.startColor = new Color(1f, 0.3f, 0f, 0.8f);
+                    break;
+
+                case DamageType.Ice:
+                    trail.startColor = new Color(0.3f, 0.8f, 1f, 0.8f);
+                    break;
+
+                default:
+                    trail.startColor = new Color(1f, 1f, 1f, 0.6f);
+                    break;
+            }
+        }
     }
 
     void Update()

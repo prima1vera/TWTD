@@ -48,16 +48,18 @@ public class UnitHealth : MonoBehaviour
         CurrentState = UnitState.Dead;
 
         StatusEffectHandler status = GetComponent<StatusEffectHandler>();
-        if (status != null)
-        {
-            status.StopAllEffects();
-        }
+        
 
         if (animator != null)
             animator.SetBool("isDead", true);
 
         if (col != null)
             col.enabled = false;
+
+        if (status != null)
+        {
+            status.StopAllEffects();
+        }
     }
 
     public void SetState(UnitState newState)

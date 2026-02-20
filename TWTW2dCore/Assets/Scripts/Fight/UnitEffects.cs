@@ -25,6 +25,9 @@ public class UnitEffects : MonoBehaviour
     {
         if (fireEffect != null)
             fireEffect.SetActive(state);
+
+        if (sr != null)
+            sr.color = state ? Color.orangeRed : Color.white;
     }
 
     public void SetFreezeVisual(bool state)
