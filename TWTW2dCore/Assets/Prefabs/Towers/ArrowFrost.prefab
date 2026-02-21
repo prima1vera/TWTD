@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5975200676950412661}
   - component: {fileID: 8508132105902518762}
   - component: {fileID: 3593610858837968738}
-  - component: {fileID: 3413114807495753973}
   - component: {fileID: 1292995990306549658}
   - component: {fileID: 4872866415376078430}
   m_Layer: 23
@@ -84,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: -91627661426143493, guid: c90d0921d61e42a498b4b5d67f62ef42, type: 3}
-  m_Color: {r: 0.5093005, g: 0.5339809, b: 0.990566, a: 1}
+  m_Color: {r: 0.56924176, g: 0.58933395, b: 0.9811321, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -124,7 +123,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -140,33 +139,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.29, y: 0.52}
   m_EdgeRadius: 0
---- !u!50 &3413114807495753973
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 341183810093573692}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 1
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 4
 --- !u!114 &1292995990306549658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,19 +151,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5be52b3dea9ecf45aebf94c7e0fc899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Arrow
-  speed: 5
   damage: 1
   damageType: 2
   knockbackForce: 1
-  trail: {fileID: 4872866415376078430}
-  dustPrefab: {fileID: 8298402269546787181, guid: c1bd8d9833f221a46b7cdd8db323329a, type: 3}
+  speed: 4
+  lifeTime: 2
+  arcHeight: 0.8
+  maxPierce: 3
   impactRadius: 1
   unitLayer:
     serializedVersion: 2
     m_Bits: 2097152
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1048576
+  dustPrefab: {fileID: 8298402269546787181, guid: c1bd8d9833f221a46b7cdd8db323329a, type: 3}
 --- !u!96 &4872866415376078430
 TrailRenderer:
   serializedVersion: 3

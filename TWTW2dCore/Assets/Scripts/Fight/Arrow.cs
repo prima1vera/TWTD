@@ -1,54 +1,115 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Arrow : MonoBehaviour
 {
-    public float speed = 10f;
     public int damage = 1;
-    private Vector3 direction;
     public DamageType damageType = DamageType.Normal;
-    public float knockbackForce = 0.2f;
-    public TrailRenderer trail;
-    private Rigidbody2D rb;
+    public float knockbackForce = 0.3f;
+
+    public float speed = 8f;
+    public float lifeTime = 2f;
+    public float arcHeight = 1.0f;
+
+    public int maxPierce = 3;
+    public float impactRadius = 1.5f;
+
+    public LayerMask unitLayer;
 
     public GameObject dustPrefab;
-    private bool canImpact = false;
 
-    public float impactRadius = 1.2f;
-    public LayerMask unitLayer;
-    public LayerMask groundLayer;
+    private Vector2 direction;
+    private Vector2 startPos;
+    private float timer = 0f;
+    private bool hasImpacted = false;
 
-    void EnableImpact()
-    {
-        canImpact = true;
-    }
+    private int pierceCount = 0;
+    private List<UnitHealth> hitUnits = new List<UnitHealth>();
 
-    public void SetDirection(Vector3 dir)
+    public void Launch(Vector2 dir)
     {
         direction = dir.normalized;
+        startPos = transform.position;
+    }
+
+    void Update()
+    {
+        if (hasImpacted) return;
+
+        timer += Time.deltaTime;
+
+        float distance = speed * timer;
+        Vector2 flatPos = startPos + direction * distance;
+
+        float arc = Mathf.Sin(timer * Mathf.PI) * arcHeight;
+
+        transform.position = flatPos + Vector2.up * arc;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        if (rb == null)
-            rb = GetComponent<Rigidbody2D>();
+        CheckUnits();
 
-        rb.linearVelocity = direction * speed;
+        if (arc <= 0f && timer > 0.1f)
+        {
+            Explode();
+        }
 
-        Invoke(nameof(EnableImpact), 0.05f);
+        //if (timer >= lifeTime)
+        //{
+        //    Explode();
+        //}
     }
 
-    void Impact()
+    void CheckUnits()
     {
-        rb.linearVelocity = Vector2.zero;
-        rb.simulated = false;
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 0.3f, unitLayer);
 
-        GetComponent<Collider2D>().enabled = false;
+        foreach (Collider2D hit in hits)
+        {
+            UnitHealth health = hit.GetComponent<UnitHealth>();
+            if (health == null) continue;
+
+            if (hitUnits.Contains(health)) continue;
+
+            hitUnits.Add(health);
+            pierceCount++;
+
+            ApplyDamage(health);
+
+            if (pierceCount >= maxPierce)
+            {
+                Explode();
+                return;
+            }
+        }
+    }
+
+    void ApplyDamage(UnitHealth health)
+    {
+        Vector2 forceDir = (health.transform.position - transform.position).normalized;
+
+        health.TakeDamage(damage, damageType, forceDir, knockbackForce);
+
+        StatusEffectHandler status = health.GetComponent<StatusEffectHandler>();
+
+        if (status != null)
+        {
+            if (damageType == DamageType.Fire)
+                status.ApplyBurn(3f, 1, 0.5f);
+
+            if (damageType == DamageType.Ice)
+                status.ApplyFreeze(2f, 0.4f);
+        }
+    }
+
+    void Explode()
+    {
+        if (hasImpacted) return;
+        hasImpacted = true;
 
         if (dustPrefab != null)
-        {
             Instantiate(dustPrefab, transform.position, Quaternion.identity);
-            //dustPrefab.SetActive(true);
-        }
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, impactRadius, unitLayer);
 
@@ -57,68 +118,9 @@ public class Arrow : MonoBehaviour
             UnitHealth health = hit.GetComponent<UnitHealth>();
             if (health == null) continue;
 
-            Vector2 forceDir = (hit.transform.position - transform.position).normalized;
-
-            health.TakeDamage(damage, damageType, forceDir, knockbackForce);
-
-            StatusEffectHandler status = hit.GetComponent<StatusEffectHandler>();
-
-            if (status != null)
-            {
-                if (damageType == DamageType.Fire)
-                    status.ApplyBurn(3f, 1, 0.5f);
-
-                if (damageType == DamageType.Ice)
-                    status.ApplyFreeze(2f, 0.4f);
-            }
+            ApplyDamage(health);
         }
 
-        Destroy(gameObject, 1.0f);
-        //Destroy(gameObject);
-    }
-
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        rb.linearVelocity = direction * speed;
-
-        if (trail != null)
-        {
-            switch (damageType)
-            {
-                case DamageType.Fire:
-                    trail.startColor = new Color(1f, 0.3f, 0f, 0.8f);
-                    break;
-
-                case DamageType.Ice:
-                    trail.startColor = new Color(0.3f, 0.8f, 1f, 0.8f);
-                    break;
-
-                default:
-                    trail.startColor = new Color(1f, 1f, 1f, 0.6f);
-                    break;
-            }
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (!canImpact) return;
-
-        Debug.Log("TRIGGER: " + other.name);
-
-        int otherLayer = other.gameObject.layer;
-
-        if (((1 << otherLayer) & groundLayer) != 0)
-        {
-            Impact();
-            return;
-        }
-
-        if (((1 << otherLayer) & unitLayer) != 0)
-        {
-            Impact();
-            return;
-        }
+        Destroy(gameObject);
     }
 }

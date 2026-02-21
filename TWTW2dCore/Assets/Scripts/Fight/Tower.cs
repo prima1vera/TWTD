@@ -64,8 +64,7 @@ public class Tower : MonoBehaviour
 
     public void ShootArrow()
     {
-        if (currentTarget == null)
-            return;
+        if (currentTarget == null) return;
 
         GameObject arrowGO = Instantiate(
             arrowPrefab,
@@ -76,10 +75,10 @@ public class Tower : MonoBehaviour
         Arrow arrow = arrowGO.GetComponent<Arrow>();
         if (arrow != null)
         {
-            //Vector3 dir = currentTarget.position - firePoint.position;
-            Vector3 randomOffset = Random.insideUnitCircle * 0.5f;
-            Vector3 aimPoint = currentTarget.position + randomOffset;
-            arrow.SetDirection(aimPoint - firePoint.position);
+            Vector2 randomOffset = Random.insideUnitCircle * 0.5f;
+            Vector2 dir = (currentTarget.position + (Vector3)randomOffset - firePoint.position).normalized;
+
+            arrow.Launch(dir);
         }
     }
 }
