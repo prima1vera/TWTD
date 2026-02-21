@@ -52,33 +52,28 @@ public class UnitHealth : MonoBehaviour
 
         if (animator != null)
         {
-            int randomDeath = Random.Range(0, 4);
+            int randomDeath = Random.Range(0, 5);
             animator.SetInteger("deathIndex", randomDeath);
             animator.SetBool("isDead", true);
         }
 
-        if (col != null)
-            col.enabled = false;
-
+        //bloodSplashPrefab.SetActive(true);
         Instantiate(bloodSplashPrefab, transform.position, Quaternion.identity);
 
         if (bloodPoolPrefab != null)
         {
-            GameObject blood = Instantiate(bloodPoolPrefab, transform.position, Quaternion.identity);
+            Vector3 bloodPos = col.bounds.min;
+            GameObject blood = Instantiate(bloodPoolPrefab, bloodPos, Quaternion.identity);
 
-            float scale = UnityEngine.Random.Range(0.5f, 1f);
+            float scale = UnityEngine.Random.Range(0.3f, 1.0f);
             blood.transform.localScale = Vector3.one * scale;
 
-            //blood.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+            // blood.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 180)); если лужа крове обьемная надо тестить
         }
 
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr != null)
         {
-            //Color c = sr.color;
-            //c = Color.Lerp(c, Color.gray, 0.4f); // убираем насыщенность
-            //c *= 0.8f; // затемняем
-            //sr.color = c;
             sr.sortingLayerName = "Units_Dead";
             sr.sortingOrder = 0;
         }
@@ -87,7 +82,8 @@ public class UnitHealth : MonoBehaviour
         if (sorter != null)
             sorter.enabled = false;
 
-        GetComponent<Collider2D>().enabled = false;
+        if (col != null)
+            col.enabled = false;
     }
 
     public void SetState(UnitState newState)

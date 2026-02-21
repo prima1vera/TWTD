@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Tower : MonoBehaviour
 {
@@ -75,8 +76,10 @@ public class Tower : MonoBehaviour
         Arrow arrow = arrowGO.GetComponent<Arrow>();
         if (arrow != null)
         {
-            Vector3 dir = currentTarget.position - firePoint.position;
-            arrow.SetDirection(dir);
+            //Vector3 dir = currentTarget.position - firePoint.position;
+            Vector3 randomOffset = Random.insideUnitCircle * 0.5f;
+            Vector3 aimPoint = currentTarget.position + randomOffset;
+            arrow.SetDirection(aimPoint - firePoint.position);
         }
     }
 }
