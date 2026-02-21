@@ -76,9 +76,9 @@ public class Tower : MonoBehaviour
         if (arrow != null)
         {
             Vector2 randomOffset = Random.insideUnitCircle * 0.5f;
-            Vector2 dir = (currentTarget.position + (Vector3)randomOffset - firePoint.position).normalized;
+            Vector2 targetPoint = (Vector2)currentTarget.position + randomOffset;
 
-            arrow.Launch(dir);
+            arrow.Launch(targetPoint);
         }
     }
 }

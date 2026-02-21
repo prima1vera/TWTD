@@ -7,29 +7,27 @@ public class Arrow : MonoBehaviour
     public DamageType damageType = DamageType.Normal;
     public float knockbackForce = 0.3f;
 
-    public float speed = 8f;
-    public float lifeTime = 2f;
-    public float arcHeight = 1.0f;
+    public float travelTime = 0.6f;
+    public float arcHeight = 2f;
 
     public int maxPierce = 3;
     public float impactRadius = 1.5f;
-
     public LayerMask unitLayer;
 
     public GameObject dustPrefab;
 
-    private Vector2 direction;
     private Vector2 startPos;
+    private Vector2 targetPos;
     private float timer = 0f;
     private bool hasImpacted = false;
 
     private int pierceCount = 0;
     private List<UnitHealth> hitUnits = new List<UnitHealth>();
 
-    public void Launch(Vector2 dir)
+    public void Launch(Vector2 target)
     {
-        direction = dir.normalized;
         startPos = transform.position;
+        targetPos = target;
     }
 
     void Update()
@@ -37,28 +35,29 @@ public class Arrow : MonoBehaviour
         if (hasImpacted) return;
 
         timer += Time.deltaTime;
+        float t = timer / travelTime;
 
-        float distance = speed * timer;
-        Vector2 flatPos = startPos + direction * distance;
+        if (t >= 1f)
+        {
+            Explode();
+            return;
+        }
 
-        float arc = Mathf.Sin(timer * Mathf.PI) * arcHeight;
+        // Движение по прямой
+        Vector2 currentPos = Vector2.Lerp(startPos, targetPos, t);
 
-        transform.position = flatPos + Vector2.up * arc;
+        // Добавляем высоту
+        float height = Mathf.Sin(t * Mathf.PI) * arcHeight;
+        currentPos.y += height;
 
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.position = currentPos;
+
+        // Поворот по направлению движения
+        Vector2 dir = (targetPos - startPos).normalized;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         CheckUnits();
-
-        if (arc <= 0f && timer > 0.1f)
-        {
-            Explode();
-        }
-
-        //if (timer >= lifeTime)
-        //{
-        //    Explode();
-        //}
     }
 
     void CheckUnits()

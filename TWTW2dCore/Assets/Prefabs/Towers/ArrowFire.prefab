@@ -154,9 +154,8 @@ MonoBehaviour:
   damage: 1
   damageType: 1
   knockbackForce: 1
-  speed: 4
-  lifeTime: 2
-  arcHeight: 0.5
+  travelTime: 0.5
+  arcHeight: 1
   maxPierce: 3
   impactRadius: 0.5
   unitLayer:
