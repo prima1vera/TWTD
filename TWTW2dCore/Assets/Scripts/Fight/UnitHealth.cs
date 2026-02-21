@@ -51,7 +51,11 @@ public class UnitHealth : MonoBehaviour
         CurrentState = UnitState.Dead;
 
         if (animator != null)
+        {
+            int randomDeath = Random.Range(0, 4);
+            animator.SetInteger("deathIndex", randomDeath);
             animator.SetBool("isDead", true);
+        }
 
         if (col != null)
             col.enabled = false;
@@ -82,6 +86,8 @@ public class UnitHealth : MonoBehaviour
         TopDownSorter sorter = GetComponent<TopDownSorter>();
         if (sorter != null)
             sorter.enabled = false;
+
+        GetComponent<Collider2D>().enabled = false;
     }
 
     public void SetState(UnitState newState)

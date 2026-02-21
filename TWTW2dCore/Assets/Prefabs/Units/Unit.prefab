@@ -287,7 +287,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.01
+      scalar: 0.04
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -870,7 +870,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 500
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -14680,7 +14680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitMovement
   speed: 0.5
-  separationRadius: 0.01
+  separationRadius: 0.1
   separationForce: 0.1
 --- !u!114 &4431284854324352027
 MonoBehaviour:
@@ -14694,7 +14694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6a166122f46c6d4290d6556a85e25a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitHealth
-  maxHealth: 20
+  maxHealth: 25
   bloodPoolPrefab: {fileID: 7924102300927368246, guid: b6d59c3344c8b4f4ba0aecaade57ebeb, type: 3}
   bloodSplashPrefab: {fileID: 370781730584731394}
 --- !u!114 &-6560936230222391820
