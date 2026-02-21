@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class UnitHealth : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class UnitHealth : MonoBehaviour
 
     private Animator animator;
     private Collider2D col;
+    public GameObject bloodPoolPrefab;
+    public GameObject bloodSplashPrefab;
 
     void Start()
     {
@@ -53,10 +56,27 @@ public class UnitHealth : MonoBehaviour
         if (col != null)
             col.enabled = false;
 
+        Instantiate(bloodSplashPrefab, transform.position, Quaternion.identity);
+
+        if (bloodPoolPrefab != null)
+        {
+            GameObject blood = Instantiate(bloodPoolPrefab, transform.position, Quaternion.identity);
+
+            float scale = UnityEngine.Random.Range(0.5f, 1f);
+            blood.transform.localScale = Vector3.one * scale;
+
+            //blood.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+        }
+
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr != null)
         {
-            sr.sortingOrder = -10000; // ниже живых
+            //Color c = sr.color;
+            //c = Color.Lerp(c, Color.gray, 0.4f); // убираем насыщенность
+            //c *= 0.8f; // затемняем
+            //sr.color = c;
+            sr.sortingLayerName = "Units_Dead";
+            sr.sortingOrder = 0;
         }
 
         TopDownSorter sorter = GetComponent<TopDownSorter>();

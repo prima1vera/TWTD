@@ -1643,11 +1643,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1552684744727991414, guid: 63fdd6d1c0ebe854c9f63fc6a15e1dff, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1552684744727991414, guid: 63fdd6d1c0ebe854c9f63fc6a15e1dff, type: 3}
       propertyPath: m_SortingLayerID
-      value: -516203043
+      value: -9025213
       objectReference: {fileID: 0}
     - target: {fileID: 2102647808292042453, guid: 63fdd6d1c0ebe854c9f63fc6a15e1dff, type: 3}
       propertyPath: m_Name
@@ -2618,7 +2618,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000dd5d3be1434976fff57d341ba17c2754
+  m_ApplyToSortingLayers: 00000000dd5d3be1434976ffa17c27542be8a22fbb9cd21d
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -3504,6 +3504,14 @@ PrefabInstance:
     - target: {fileID: 2404369416373103768, guid: b9e8ab41d0c2a2148806d6d434aa0241, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190869859010253226, guid: b9e8ab41d0c2a2148806d6d434aa0241, type: 3}
+      propertyPath: separationForce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190869859010253226, guid: b9e8ab41d0c2a2148806d6d434aa0241, type: 3}
+      propertyPath: separationRadius
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 8051200457295428929, guid: b9e8ab41d0c2a2148806d6d434aa0241, type: 3}
       propertyPath: m_Name
@@ -8497,6 +8505,14 @@ PrefabInstance:
     - target: {fileID: 2404369416373103768, guid: b9e8ab41d0c2a2148806d6d434aa0241, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190869859010253226, guid: b9e8ab41d0c2a2148806d6d434aa0241, type: 3}
+      propertyPath: separationForce
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190869859010253226, guid: b9e8ab41d0c2a2148806d6d434aa0241, type: 3}
+      propertyPath: separationRadius
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8051200457295428929, guid: b9e8ab41d0c2a2148806d6d434aa0241, type: 3}
       propertyPath: m_Name
