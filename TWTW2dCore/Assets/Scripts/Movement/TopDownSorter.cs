@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class TopDownSorter : MonoBehaviour
 {
     private SpriteRenderer sr;
@@ -12,6 +11,9 @@ public class TopDownSorter : MonoBehaviour
 
     void LateUpdate()
     {
+        if (GetComponent<UnitHealth>().CurrentState == UnitState.Dead)
+            return;
+
         sr.sortingOrder = Mathf.RoundToInt(-transform.position.y * 100);
     }
 }
